@@ -1,15 +1,14 @@
 import {Footer, Layout, Navbar} from 'nextra-theme-docs'
-import {Banner, Head} from 'nextra/components'
+import {Head} from 'nextra/components'
 import {getPageMap} from 'nextra/page-map'
 import 'nextra-theme-docs/style.css'
-import Link from "next/link";
 
 export const metadata = {
     // Define your metadata here
     // For more information on metadata API, see: https://nextjs.org/docs/app/building-your-application/optimizing/metadata
 }
 
-const banner = <Banner storageKey="some-key">This template was created with 🩸 and 💦 by <Link href="https://github.com/phucbm">PHUCBM</Link> 🐧</Banner>
+// const banner = <Banner storageKey="some-key">This template was created with 🩸 and 💦 by <Link href="https://github.com/phucbm">PHUCBM</Link> 🐧</Banner>
 const navbar = (
     <Navbar
         logo={<img src="/images/general/logo.svg" alt="Logo" width={100} height={20}/>}
@@ -36,7 +35,7 @@ export default async function RootLayout({children}) {
         </Head>
         <body>
         <Layout
-            banner={banner}
+            // banner={banner}
             navbar={navbar}
             pageMap={await getPageMap()}
             docsRepositoryBase="https://github.com/phucbm/nextra-docs-starter/tree/main"
