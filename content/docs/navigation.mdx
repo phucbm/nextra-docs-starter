@@ -160,62 +160,58 @@ export default {
 
 ```typescript
 // app/_meta.global.tsx
-import { MetaRecord } from "nextra";
+import {MetaRecord} from "nextra";
 
-// Sidebar items
 const DOCS_ITEMS: MetaRecord = {
-    'getting-started': 'Getting Started',
-    'installation': 'Installation',
-    '---concepts': {
-        type: 'separator',
-        title: 'Core Concepts'
-    },
-    'configuration': 'Configuration',
-    'built-ins': 'Built-in Components'
+    index: '',
+    navigation: '',
+    tips: '',
 }
 
+
 export default {
-    // Navbar: Home page with full width
     index: {
         type: 'page',
-        title: 'Home',
         theme: {
-            layout: 'full'
+            layout: 'full',
+            toc: false,
+            timestamp: false,
         }
     },
-
-    // Navbar: Documentation entry with sidebar items
     docs: {
         type: 'page',
         title: 'Documentation',
         items: DOCS_ITEMS
     },
-
-    // Navbar: Standalone pages
-    about: {
+    article: {
         type: 'page',
-        title: 'About'
+        theme: {
+            toc: false,
+            typesetting: 'article',
+        }
     },
     contact: {
         type: 'page',
-        title: 'Contact'
+        theme: {
+            layout: 'full',
+            toc: false,
+            timestamp: false,
+        }
     },
-
-    // Navbar: Dropdown menu
-    resources: {
+    nextraStarter: {
+        title: 'Starter Templates',
         type: 'menu',
-        title: 'Resources',
         items: {
-            github: {
-                title: 'GitHub',
-                href: 'https://github.com/your-repo'
-            },
             docs: {
-                title: 'Nextra Docs',
-                href: 'https://nextra.site'
+                title: 'Docs Starter repo',
+                href: 'https://github.com/phucbm/nextra-docs-starter',
+            },
+            blog: {
+                title: 'Blog Starter repo',
+                href: 'https://github.com/phucbm/nextra-blog-starter'
             }
         }
-    }
+    },
 }
 ```
 
