@@ -20,7 +20,7 @@
   "homepage": "https://github.com/phucbm/nextra-docs-starter#readme",
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.16",
-    "next": "^15.5.4",
+    "next": "^16.0.1",
     "nextra": "^4.6.0",
     "nextra-theme-docs": "^4.6.0",
     "postcss": "^8.5.6",
