@@ -7,9 +7,9 @@ This starter template includes the following features:
 - [x] **Nextra 4**
 - [x] **Search with Pagefind**
 
-[**Live Demo →**](https://nextra-docs-starter.vercel.app)
+[**Live Demo →**](https://nextra.phucbm.com)
 
-[![](.github/screenshot.png)](https://nextra-docs-starter.vercel.app)
+[![](.github/screenshot.png)](https://nextra.phucbm.com)
 
 ## Quick Start
 
