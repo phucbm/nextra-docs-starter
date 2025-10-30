@@ -61,16 +61,27 @@ This starter template provides:
 
 ## Project Structure
 
-```
-├── app/
-│   ├── _meta.global.tsx    # Navigation configuration
-│   ├── layout.tsx          # Root layout
-├── content/
-│   ├── docs/               # Documentation pages
-│   ├── about.mdx           # About page
-│   └── contact.mdx         # Contact page
-└── public/                 # Static assets
-```
+<FileTree>
+    <FileTree.Folder name="app" defaultOpen>
+        <FileTree.Folder name="[[...mdxPath]]">
+            <FileTree.File name="page.jsx" />
+        </FileTree.Folder>
+        <FileTree.File name="_meta.global.tsx" />
+        <FileTree.File name="globals.css" />
+        <FileTree.File name="layout.tsx" />
+        <FileTree.File name="not-found.tsx" />
+    </FileTree.Folder>
+    <FileTree.Folder name="content" defaultOpen>
+        <FileTree.File name="article.mdx" />
+        <FileTree.File name="contact.mdx" />
+        <FileTree.File name="index.mdx" />
+        <FileTree.Folder name="docs" defaultOpen>
+            <FileTree.File name="index.mdx" />
+            <FileTree.File name="navigation.mdx" />
+            <FileTree.File name="tips.mdx" />
+        </FileTree.Folder>
+    </FileTree.Folder>
+</FileTree>
 
 ## Need Help?
 
