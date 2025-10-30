@@ -1,0 +1,345 @@
+---
+title: Article
+description: "Learn how to build beautiful documentation sites with Nextra, the Next.js-based static site generator"
+author: "John Doe"
+date: "2025-10-30"
+tags: ["nextra", "documentation", "nextjs", "tutorial"]
+readingTime: "8 min read"
+published: true
+---
+# Example Article
+
+<Callout>This is an example of `typesetting:'article'`</Callout>
+
+```typescript
+// app/_meta.global.tsx
+export default {
+     article: {
+        type: 'page',
+        theme: {
+            toc: false,
+            typesetting: 'article',
+        }
+    }
+}
+```
+
+Building documentation sites can be challenging, but with Nextra, the process becomes surprisingly straightforward. In this comprehensive guide, we'll walk through everything you need to know to create your first Nextra site.
+
+## Introduction
+
+Documentation is the backbone of any successful project. Whether you're building an open-source library, an internal tool, or a product, good documentation can make or break the user experience. That's where Nextra comes in.
+
+Nextra combines the power of Next.js with the simplicity of MDX to create a documentation framework that's both powerful and easy to use. It provides sensible defaults while remaining highly customizable.
+
+## Why Choose Nextra?
+
+Before diving into the technical details, let's understand what makes Nextra special:
+
+### 1. Built on Next.js
+
+Nextra leverages Next.js 15 and the App Router, giving you access to:
+- Server-side rendering (SSR)
+- Static site generation (SSG)
+- Incremental static regeneration (ISR)
+- Edge runtime support
+- Optimized performance out of the box
+
+### 2. MDX Support
+
+Write your content in MDX, which means you can:
+- Use standard Markdown syntax
+- Import and use React components
+- Create interactive examples
+- Build custom layouts
+
+### 3. Beautiful Themes
+
+Nextra comes with two official themes:
+- **Docs Theme** - Perfect for documentation sites
+- **Blog Theme** - Ideal for content-focused blogs
+
+Both themes are highly customizable and production-ready.
+
+## Setting Up Your First Project
+
+Let's create a new Nextra project from scratch. You'll need Node.js 18+ installed on your machine.
+
+### Step 1: Create a New Project
+
+```bash
+npx create-next-app@latest my-nextra-site
+cd my-nextra-site
+```
+
+### Step 2: Install Nextra
+
+```bash
+npm install nextra nextra-theme-docs
+```
+
+### Step 3: Configure Next.js
+
+Update your `next.config.js`:
+
+```javascript
+const withNextra = require('nextra')({
+  theme: 'nextra-theme-docs',
+  themeConfig: './theme.config.tsx'
+})
+
+module.exports = withNextra()
+```
+
+### Step 4: Create Your Theme Config
+
+Create `theme.config.tsx`:
+
+```tsx
+export default {
+  logo: <span>My Documentation</span>,
+  project: {
+    link: 'https://github.com/your-username/your-repo'
+  },
+  docsRepositoryBase: 'https://github.com/your-username/your-repo/tree/main'
+}
+```
+
+## Writing Content
+
+Now comes the fun part - writing your documentation!
+
+### Creating Pages
+
+Create an MDX file in your `app` directory:
+
+```markdown
+---
+title: My First Page
+---
+
+# Welcome to My Documentation
+
+This is my first page using Nextra!
+```
+
+### Using Components
+
+One of the best features of MDX is the ability to use React components:
+
+```jsx
+import { Callout } from 'nextra/components'
+
+<Callout type="info">
+  This is an info callout with useful information!
+</Callout>
+```
+
+### Code Blocks
+
+Nextra provides beautiful syntax highlighting out of the box:
+
+```typescript
+interface User {
+  id: string
+  name: string
+  email: string
+}
+
+function greetUser(user: User): string {
+  return `Hello, ${user.name}!`
+}
+```
+
+## Navigation Structure
+
+The `_meta.tsx` file controls your navigation. Here's an example:
+
+```typescript
+export default {
+  index: 'Introduction',
+  'getting-started': 'Getting Started',
+  guide: 'Guide',
+  advanced: 'Advanced',
+  about: {
+    title: 'About',
+    type: 'page'
+  }
+}
+```
+
+## Advanced Features
+
+### Custom Components
+
+Create reusable components for your documentation:
+
+```tsx
+// components/FeatureCard.tsx
+export function FeatureCard({ title, description }) {
+  return (
+    <div className="feature-card">
+      <h3>{title}</h3>
+      <p>{description}</p>
+    </div>
+  )
+}
+```
+
+Then use them in your MDX:
+
+```mdx
+import { FeatureCard } from '@/components/FeatureCard'
+
+<FeatureCard
+  title="Fast Performance"
+  description="Built on Next.js for optimal speed"
+/>
+```
+
+### Search Integration
+
+Nextra supports multiple search providers:
+- **Pagefind** - Static search (recommended)
+- **Algolia** - Hosted search service
+- **FlexSearch** - Client-side search
+
+For Pagefind, simply install and configure:
+
+```bash
+npm install pagefind
+```
+
+### Internationalization
+
+Support multiple languages easily:
+
+```typescript
+// theme.config.tsx
+export default {
+  i18n: [
+    { locale: 'en', text: 'English' },
+    { locale: 'es', text: 'Español' },
+    { locale: 'fr', text: 'Français' }
+  ]
+}
+```
+
+## Deployment
+
+Nextra sites can be deployed anywhere Next.js apps can:
+
+### Vercel (Recommended)
+
+```bash
+npm install -g vercel
+vercel
+```
+
+### Netlify
+
+```bash
+npm run build
+# Upload the .next directory
+```
+
+### Static Export
+
+For fully static sites:
+
+```javascript
+// next.config.js
+module.exports = withNextra({
+  output: 'export',
+  images: { unoptimized: true }
+})
+```
+
+Then run:
+
+```bash
+npm run build
+```
+
+## Best Practices
+
+Based on experience building documentation sites, here are some tips:
+
+### 1. Keep It Simple
+
+Don't overcomplicate your structure. Start with the basics:
+- Introduction
+- Getting Started
+- Core Concepts
+- API Reference
+- Examples
+
+### 2. Use Clear Navigation
+
+Make it easy for users to find what they need:
+- Logical grouping
+- Descriptive titles
+- Breadcrumbs
+- Search functionality
+
+### 3. Include Examples
+
+Code examples are crucial. For every concept, provide:
+- Clear explanation
+- Working code example
+- Expected output
+- Common pitfalls
+
+### 4. Maintain Consistency
+
+Use consistent:
+- Formatting
+- Terminology
+- Code style
+- Structure
+
+## Common Issues and Solutions
+
+### Issue: Build Errors
+
+If you encounter build errors, check:
+- Node.js version (18+)
+- Dependencies are up to date
+- No circular imports
+- Valid MDX syntax
+
+### Issue: Styling Not Working
+
+Make sure:
+- Tailwind is properly configured
+- CSS is imported in your layout
+- Class names are correct
+
+### Issue: Search Not Working
+
+Verify:
+- Search provider is installed
+- Configuration is correct
+- Build process includes search indexing
+
+## Conclusion
+
+Nextra is a powerful tool for building documentation sites. Its combination of Next.js performance, MDX flexibility, and beautiful themes makes it an excellent choice for any documentation project.
+
+Key takeaways:
+- ✅ Easy to set up and get started
+- ✅ Powerful customization options
+- ✅ Great developer experience
+- ✅ Production-ready out of the box
+
+Ready to build your documentation site? Start with the [Nextra Docs Starter](https://github.com/phucbm/nextra-docs-starter) template to skip the setup and jump straight into writing content.
+
+## Additional Resources
+
+- [Nextra Documentation](https://nextra.site)
+- [Next.js Documentation](https://nextjs.org/docs)
+- [MDX Documentation](https://mdxjs.com)
+- [Nextra GitHub Repository](https://github.com/shuding/nextra)
+
+
+*Have questions or feedback? Leave a comment below or reach out on [Twitter](https://twitter.com/yourhandle).*

@@ -1,0 +1,40 @@
+---
+title: "Tips"
+description: "Helpful tips for working with Nextra"
+---
+
+# Tips
+
+## Use Components in MDX Without Import
+
+You can predefine components that you usually use in the `mdx-components.tsx` file.
+
+```tsx
+// mdx-components.tsx
+import {useMDXComponents as getThemeComponents} from 'nextra-theme-docs'
+import {Callout} from "nextra/components";
+
+// Get the default MDX components
+const themeComponents = getThemeComponents()
+
+// Merge components
+export function useMDXComponents() {
+    return {
+        ...themeComponents,
+        Callout: Callout
+    }
+}
+```
+
+Then in your MDX files, just use the component without import:
+
+```mdx
+---
+title: Article
+description: "Learn how to build beautiful..."
+---
+
+# Example Article
+
+<Callout>This is an example of `typesetting:'article'`</Callout>
+```
