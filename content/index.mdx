@@ -1,53 +1,106 @@
 ---
-title: Nextra Docs Starter
+title: Home
+description: A streamlined starter template for Nextra documentation sites
 ---
-
-import {Steps, Cards} from 'nextra/components'
 
 # Nextra Docs Starter
 
-This starter template includes the following features:
+A clean, beginner-friendly starter template for building documentation sites with Nextra. If you've found the official Nextra docs a bit overwhelming, this template is designed to help you get started faster with clear examples and sensible defaults.
 
-<Cards>
-    <Cards.Card
-        icon={<img src="/images/general/icon.svg" alt="Logo" width={28} height={28}/>}
-        title="Nextra 4"
-        href="https://nextra.site"
-    />
-    <Cards.Card
-        icon=""
-        title="Search with Pagefind"
-        href="https://the-guild.dev/blog/nextra-4#new-search-engine--pagefind"
-    />
-</Cards>
-
-[**Live Demo →**](https://nextra-docs-starter.vercel.app)
-
-[**Check this on GitHub →**](https://github.com/phucbm/nextra-docs-starter)
-
-## Quick Start
+[Get Started →](/docs)
 
 You can deploy this template on Vercel by clicking the button below
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fphucbm%2Fnextra-docs-starter)
 
-Or you can follow the steps below to clone the repository and run it locally.
+## Features
 
-<Steps>
-    ### Clone this repository
+### 🔍 Built-in Search with Pagefind
 
-    Using the GitHub CLI:
-    ```bash
-    gh repo clone phucbm/nextra-docs-starter
-    ```
+Search functionality works out of the box. Just clone this template and you're ready to go - no additional setup required.
 
-    ### Install
-    ```bash
-    pnpm i
-    ```
+### 🧭 Clear Navigation Structure
 
-    ### Run the development server
-    ```bash
-    pnpm dev
-    ```
-</Steps>
+Pre-configured `_meta.global.tsx` with examples of:
+- **Navbar pages** - Standalone pages without sidebar
+- **Documentation pages** - Pages with sidebar navigation
+- **Dropdown menus** - External links and resources
+- **Separators** - Organized sections in sidebar
+
+See the [Navigation Guide](/docs/navigation) for complete documentation.
+
+### 🎨 Theme Customization
+
+Easy-to-configure theme options including:
+- Full-width layouts
+- Table of contents control
+- Timestamps
+- Typography presets
+
+### 📝 Ready-to-Use Templates
+
+Includes example pages for:
+- Documentation structure
+- About page
+- Contact page
+- Custom layouts
+
+
+## What Makes This Different?
+
+The official Nextra documentation can be confusing for newcomers, especially when it comes to:
+- Understanding the difference between page types
+- Configuring navigation properly
+- Setting up the `_meta` files correctly
+
+This starter template provides:
+- **Clear examples** of every configuration option
+- **Complete code snippets** you can copy and modify
+- **Organized structure** that's easy to understand
+- **Best practices** built-in from the start
+
+## Project Structure
+
+<FileTree>
+    <FileTree.Folder name="app" defaultOpen>
+        <FileTree.Folder name="[[...mdxPath]]">
+            <FileTree.File name="page.jsx" />
+        </FileTree.Folder>
+        <FileTree.File name="_meta.global.tsx" />
+        <FileTree.File name="globals.css" />
+        <FileTree.File name="layout.tsx" />
+        <FileTree.File name="not-found.tsx" />
+    </FileTree.Folder>
+    <FileTree.Folder name="content" defaultOpen>
+        <FileTree.File name="article.mdx" />
+        <FileTree.File name="contact.mdx" />
+        <FileTree.File name="index.mdx" />
+        <FileTree.Folder name="docs" defaultOpen>
+            <FileTree.File name="index.mdx" />
+            <FileTree.File name="navigation.mdx" />
+            <FileTree.File name="tips.mdx" />
+        </FileTree.Folder>
+    </FileTree.Folder>
+</FileTree>
+
+## Need Help?
+
+- **Issues**: [GitHub Issues](https://github.com/phucbm/nextra-docs-starter/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/phucbm/nextra-docs-starter/discussions)
+- **Nextra Docs**: [Official Documentation](https://nextra.site)
+
+## Show Your Support
+
+If this template helped you, consider:
+- ⭐ [Starring the repository](https://github.com/phucbm/nextra-docs-starter)
+- 🐛 [Reporting issues](https://github.com/phucbm/nextra-docs-starter/issues)
+- 💡 [Suggesting features](https://github.com/phucbm/nextra-docs-starter/discussions)
+- 📖 [Contributing improvements](https://github.com/phucbm/nextra-docs-starter/pulls)
+
+## License
+
+MIT License - feel free to use this template for your projects!
+
+---
+
+**Ready to build your docs?** [Get Started →](/docs/)

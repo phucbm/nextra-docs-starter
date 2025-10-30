@@ -1,0 +1,223 @@
+---
+title: "Navigation Guide"
+description: "Manage navbar and sidebar with _meta.global.tsx"
+---
+
+# Navigation Guide
+
+All navigation is managed in a single `_meta.global.tsx` file. No need for multiple `_meta.ts` files.
+
+## Page Types
+
+### `type: 'doc'`
+
+Adds page to **sidebar** (default type)
+
+```typescript
+// app/_meta.global.tsx
+export default {
+    'getting-started': '', // use title from frontmatter
+    // or
+    'getting-started': 'Getting Started', // set title from meta file
+    // or
+    'getting-started': {
+        type: 'doc',
+        title: 'Getting Started'
+    }
+}
+```
+
+### `type: 'page'`
+
+Adds page to **navbar**
+
+```typescript
+// app/_meta.global.tsx
+export default {
+    about: {
+        type: 'page',
+        title: 'About'
+    },
+    contact: {
+        type: 'page',
+        title: 'Contact'
+    }
+}
+```
+
+### `type: 'menu'`
+
+Creates **navbar dropdown**
+
+```typescript
+// app/_meta.global.tsx
+export default {
+    resources: {
+        type: 'menu',
+        title: 'Resources',
+        items: {
+            github: {
+                title: 'GitHub',
+                href: 'https://github.com/your-repo'
+            },
+            docs: {
+                title: 'Documentation',
+                href: 'https://nextra.site'
+            }
+        }
+    }
+}
+```
+
+### `type: 'separator'`
+
+Adds a **separator** in sidebar
+
+```typescript
+// app/_meta.global.tsx
+export default {
+    'getting-started': 'Getting Started',
+    'installation': 'Installation',
+    '---concepts': {
+        type: 'separator',
+        title: 'Core Concepts'
+    },
+    'configuration': 'Configuration',
+    'built-ins': 'Built-in Components'
+}
+```
+
+## Special Options
+
+### Full Width Layout
+
+Makes container wider, removes sidebar constraints
+
+```typescript
+// app/_meta.global.tsx
+export default {
+    index: {
+        type: 'page',
+        title: 'Home',
+        theme: {
+            layout: 'full'
+        }
+    }
+}
+```
+
+### Theme Options
+
+Control page appearance and behavior
+
+```typescript
+// app/_meta.global.tsx
+export default {
+    about: {
+        type: 'page',
+        title: 'About',
+        theme: {
+            layout: 'full',      // full width layout
+            toc: false,          // hide table of contents
+            timestamp: false,    // hide last updated timestamp
+            typesetting: 'article' // article or default
+        }
+    }
+}
+```
+
+See more options here: https://nextra.site/docs/file-conventions/meta-file#theme-option
+
+### Documentation with Sidebar Items
+
+Page type with nested sidebar items
+
+```typescript
+// app/_meta.global.tsx
+import { MetaRecord } from "nextra";
+
+const DOCS_ITEMS: MetaRecord = {
+    'getting-started': 'Getting Started',
+    'installation': 'Installation',
+    '---concepts': {
+        type: 'separator',
+        title: 'Core Concepts'
+    },
+    'configuration': 'Configuration',
+    'built-ins': 'Built-in Components'
+}
+
+export default {
+    docs: {
+        type: 'page',
+        title: 'Documentation',
+        items: DOCS_ITEMS
+    }
+}
+```
+
+## Complete Example
+
+```typescript
+// app/_meta.global.tsx
+import {MetaRecord} from "nextra";
+
+const DOCS_ITEMS: MetaRecord = {
+    index: '',
+    navigation: '',
+    tips: '',
+}
+
+
+export default {
+    index: {
+        type: 'page',
+        theme: {
+            layout: 'full',
+            toc: false,
+            timestamp: false,
+        }
+    },
+    docs: {
+        type: 'page',
+        title: 'Documentation',
+        items: DOCS_ITEMS
+    },
+    article: {
+        type: 'page',
+        theme: {
+            toc: false,
+            typesetting: 'article',
+        }
+    },
+    contact: {
+        type: 'page',
+        theme: {
+            layout: 'full',
+            toc: false,
+            timestamp: false,
+        }
+    },
+    nextraStarter: {
+        title: 'Starter Templates',
+        type: 'menu',
+        items: {
+            docs: {
+                title: 'Docs Starter repo',
+                href: 'https://github.com/phucbm/nextra-docs-starter',
+            },
+            blog: {
+                title: 'Blog Starter repo',
+                href: 'https://github.com/phucbm/nextra-blog-starter'
+            }
+        }
+    },
+}
+```
+
+## Key Points
+
+- **Order matters** - Items appear in the order defined
+- **Default type is `'doc'`** - Omit type for sidebar items
+- **External links** - Use `href` in menu items
+- **Full width** - Use `theme: { layout: 'full' }` for wider pages
