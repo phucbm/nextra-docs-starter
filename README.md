@@ -5,11 +5,11 @@
 This starter template includes the following features:
 
 - [x] **Nextra 4**
-- [x] **Search with Pagefind**
+- [x] **Improved Search UI with Pagefind**
 
 [**Live Demo →**](https://nextra.phucbm.com)
 
-[![](.github/screenshot.png)](https://nextra.phucbm.com)
+![search-dialog](https://github.com/user-attachments/assets/c2993957-542d-4796-8529-141e16fccb43)
 
 ## Quick Start
 

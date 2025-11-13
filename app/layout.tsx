@@ -3,6 +3,8 @@ import {Head} from 'nextra/components'
 import {getPageMap} from 'nextra/page-map'
 import './globals.css'
 import {Metadata} from "next";
+import {NextraSearchDialog} from "@/components/nextra-search-dialog";
+import {getPagesFromPageMap} from "@/lib/getPagesFromPageMap";
 
 export const metadata: Metadata = {
     // Define your metadata here
@@ -19,6 +21,18 @@ const navbar = (
 const footer = <Footer>MIT {new Date().getFullYear()} © Nextra.</Footer>
 
 export default async function RootLayout({children}) {
+    const pageMap = await getPageMap();
+    const pages = await getPagesFromPageMap({
+        pageMapArray: pageMap,
+        // modify page data if needed
+        // filterItem: async (item) => {
+        //     return {
+        //         ...item,
+        //     };
+        // }
+    });
+
+
     return (
         <html
             // Not required, but good for SEO
@@ -38,9 +52,10 @@ export default async function RootLayout({children}) {
         <Layout
             // banner={banner}
             navbar={navbar}
-            pageMap={await getPageMap()}
+            pageMap={pageMap}
             docsRepositoryBase="https://github.com/phucbm/nextra-docs-starter/tree/main"
             footer={footer}
+            search={<NextraSearchDialog pages={pages}/>}
             // ... Your additional layout options
         >
             {children}
