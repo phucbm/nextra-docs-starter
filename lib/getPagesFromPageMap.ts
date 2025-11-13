@@ -19,10 +19,25 @@ export async function getPagesFromPageMap({
     const results: PageItem[] = [];
 
     for (const item of pageMapArray.slice(1)) {
-        if (!item.route) continue;
         const itemMeta = metaData[item.name];
         if (itemMeta?.display === 'hidden') continue;
         if (item.display === 'hidden') continue;
+
+        // submenu items
+        if (item.type === 'menu' && item.items) {
+            // @ts-ignore
+            const submenuItems = Object.entries(item.items).map(([key, {title, href}]) => {
+                return {
+                    title: title,
+                    url: href,
+                    parent: item.title
+                }
+            });
+            results.push(...submenuItems);
+            continue;
+        }
+
+        if (!item.route) continue;
 
         let itemValue: PageItem = {
             title: item.title,
