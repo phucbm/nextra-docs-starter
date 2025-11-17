@@ -8,6 +8,7 @@ import {Command as CommandPrimitive} from "cmdk";
 import {cn} from "@/lib/utils";
 import {useRouter} from "next/navigation";
 import {PageItem} from "@/lib/getPagesFromPageMap";
+import {Kbd} from "@/components/ui/kbd";
 
 type Props = {
     placeholder?: string;
@@ -143,7 +144,7 @@ export function NextraSearchDialog({placeholder = "Search...", pages = []}: Prop
                            showCloseButton={false}
                            className="search-dialog !max-w-[800px] overflow-hidden !bg-transparent px-2 border-none [&_.bg-popover]:bg-transparent">
 
-                <div className="border-4 border-slate-200 rounded-2xl bg-white">
+                <div className="border-4 rounded-2xl bg-background">
                     <SearchInput
                         placeholder={placeholder}
                         query={query}
@@ -216,16 +217,16 @@ function SearchTrigger({placeholder, onClick}: { placeholder: string; onClick: (
     return (
         <button
             onClick={onClick}
-            className="inline-flex items-center gap-2 px-3 py-2 text-sm
-            bg-input text-foreground cursor-pointer
-            border border-gray-200 rounded-md hover:border-gray-300 hover:bg-gray-50 transition-colors"
+            className={cn(
+                "inline-flex items-center gap-2 px-3 py-2 text-sm cursor-pointer hover:border-gray-300 dark:hover:border-white/40",
+                "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-all outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+                "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
+                "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
+            )}
         >
             <SearchIcon className="size-4"/>
             <span>{placeholder}</span>
-            <kbd
-                className="hidden sm:inline-flex h-5 select-none items-center gap-1 rounded border border-gray-200 bg-gray-100 px-1.5 font-mono text-xs text-gray-600">
-                <span className="text-xs">⌘</span>K
-            </kbd>
+            <Kbd><span className="text-xs">⌘</span>K</Kbd>
         </button>
     );
 }
@@ -278,7 +279,7 @@ function SearchItem({url, title, description, onSelect, value, parent}: {
     value?: string;
 }) {
     return (
-        <CommandItem onSelect={() => onSelect(url)} value={value}>
+        <CommandItem onSelect={() => onSelect(url)} value={value} className="cursor-pointer">
             <div className="flex flex-col gap-1 w-full">
                 <div className="flex items-center gap-1">
                     {parent && (
@@ -289,7 +290,7 @@ function SearchItem({url, title, description, onSelect, value, parent}: {
                     )}
                     <div className="font-semibold">{title}</div>
                 </div>
-                <div className="text-xs text-gray-600">
+                <div className="text-xs text-muted-foreground">
                     {description}
                 </div>
             </div>
@@ -336,7 +337,7 @@ function highlightQuery(text: string, query: string) {
     const parts = text.split(regex);
 
     return parts.map((part, index) =>
-        regex.test(part) ? <mark key={index} className="bg-brand text-brand-foreground font-medium">{part}</mark> : part
+        regex.test(part) ? <mark key={index} className="bg-primary text-primary-foreground rounded-[3px] font-medium">{part}</mark> : part
     );
 }
 
