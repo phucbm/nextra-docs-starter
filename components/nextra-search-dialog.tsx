@@ -144,7 +144,7 @@ export function NextraSearchDialog({placeholder = "Search...", pages = []}: Prop
                            showCloseButton={false}
                            className="search-dialog !max-w-[800px] overflow-hidden !bg-transparent px-2 border-none [&_.bg-popover]:bg-transparent">
 
-                <div className="border-4 border-slate-200 rounded-2xl bg-white">
+                <div className="border-4 rounded-2xl bg-background">
                     <SearchInput
                         placeholder={placeholder}
                         query={query}
@@ -279,7 +279,7 @@ function SearchItem({url, title, description, onSelect, value, parent}: {
     value?: string;
 }) {
     return (
-        <CommandItem onSelect={() => onSelect(url)} value={value}>
+        <CommandItem onSelect={() => onSelect(url)} value={value} className="cursor-pointer">
             <div className="flex flex-col gap-1 w-full">
                 <div className="flex items-center gap-1">
                     {parent && (
@@ -290,7 +290,7 @@ function SearchItem({url, title, description, onSelect, value, parent}: {
                     )}
                     <div className="font-semibold">{title}</div>
                 </div>
-                <div className="text-xs text-gray-600">
+                <div className="text-xs text-muted-foreground">
                     {description}
                 </div>
             </div>
@@ -337,7 +337,7 @@ function highlightQuery(text: string, query: string) {
     const parts = text.split(regex);
 
     return parts.map((part, index) =>
-        regex.test(part) ? <mark key={index} className="bg-brand text-brand-foreground font-medium">{part}</mark> : part
+        regex.test(part) ? <mark key={index} className="bg-primary text-primary-foreground rounded-[3px] font-medium">{part}</mark> : part
     );
 }
 
