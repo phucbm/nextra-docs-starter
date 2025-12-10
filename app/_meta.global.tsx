@@ -3,6 +3,7 @@ import {MetaRecord} from "nextra";
 const DOCS_ITEMS: MetaRecord = {
     index: '',
     navigation: '',
+    mermaid: '',
     tips: '',
 }
 

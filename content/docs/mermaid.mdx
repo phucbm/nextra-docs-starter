@@ -1,0 +1,396 @@
+---
+title: "Mermaid 다이어그램 완벽 지원"
+description: "인터랙티브한 Mermaid 다이어그램으로 문서를 풍부하게"
+---
+
+import { MermaidDiagram } from '@/components/mermaid-diagram'
+
+# Mermaid 다이어그램 완벽 지원
+
+이 템플릿은 **Mermaid 다이어그램을 완벽하게 지원**합니다. 텍스트로 다이어그램을 작성하고, 인터랙티브한 시각화로 렌더링할 수 있습니다.
+
+## Mermaid란?
+
+Mermaid는 마크다운 스타일의 텍스트로 다이어그램과 차트를 생성하는 JavaScript 기반 도구입니다. 코드로 다이어그램을 작성하면:
+
+- ✅ 버전 관리가 쉬움 (Git으로 관리 가능)
+- ✅ 수정이 빠름 (이미지 편집기 불필요)
+- ✅ 일관된 스타일 유지
+- ✅ 문서와 함께 관리
+
+## 특별한 기능들
+
+이 템플릿의 Mermaid 구현은 다음 고급 기능을 제공합니다:
+
+### 🖼️ 전체화면 모드
+
+우측 상단의 확대 버튼을 클릭하면 전체화면으로 다이어그램을 볼 수 있습니다.
+
+### 🔍 줌 & 패닝
+
+- **마우스 휠**: 스크롤로 줌 인/아웃
+- **드래그**: 클릭 & 드래그로 다이어그램 이동
+- **줌 범위**: 50% ~ 300%
+
+### ⌨️ 키보드 단축키
+
+| 키 | 동작 |
+|---|---|
+| `↑` `↓` `←` `→` | 다이어그램 이동 (패닝) |
+| `+` / `=` | 줌 인 |
+| `-` | 줌 아웃 |
+| `0` | 원래 크기로 리셋 |
+
+## 기본 사용법
+
+MDX 파일에서 Mermaid 컴포넌트를 import하고 사용합니다:
+
+```tsx
+import { MermaidDiagram } from '@/components/mermaid-diagram'
+
+<MermaidDiagram chart={`
+graph TD
+    A[시작] --> B{결정}
+    B -->|예| C[실행]
+    B -->|아니오| D[종료]
+    C --> D
+`} />
+```
+
+결과:
+
+<MermaidDiagram chart={`
+graph TD
+    A[시작] --> B{결정}
+    B -->|예| C[실행]
+    B -->|아니오| D[종료]
+    C --> D
+`} />
+
+## 다이어그램 타입
+
+### 순서도 (Flowchart)
+
+프로세스와 워크플로우를 시각화합니다.
+
+<MermaidDiagram chart={`
+graph LR
+    A[사용자 요청] --> B[인증 확인]
+    B --> C{인증됨?}
+    C -->|Yes| D[데이터 조회]
+    C -->|No| E[에러 반환]
+    D --> F[응답 전송]
+    E --> F
+`} />
+
+```
+<MermaidDiagram chart={`
+graph LR
+    A[사용자 요청] --> B[인증 확인]
+    B --> C{인증됨?}
+    C -->|Yes| D[데이터 조회]
+    C -->|No| E[에러 반환]
+    D --> F[응답 전송]
+    E --> F
+`} />
+```
+
+### 시퀀스 다이어그램 (Sequence Diagram)
+
+시스템 간 상호작용을 표현합니다.
+
+<MermaidDiagram chart={`
+sequenceDiagram
+    participant U as 사용자
+    participant F as 프론트엔드
+    participant B as 백엔드
+    participant D as 데이터베이스
+    
+    U->>F: 로그인 요청
+    F->>B: POST /api/login
+    B->>D: 사용자 조회
+    D-->>B: 사용자 정보
+    B-->>F: JWT 토큰
+    F-->>U: 로그인 성공
+`} />
+
+```
+<MermaidDiagram chart={`
+sequenceDiagram
+    participant U as 사용자
+    participant F as 프론트엔드
+    participant B as 백엔드
+    participant D as 데이터베이스
+    
+    U->>F: 로그인 요청
+    F->>B: POST /api/login
+    B->>D: 사용자 조회
+    D-->>B: 사용자 정보
+    B-->>F: JWT 토큰
+    F-->>U: 로그인 성공
+`} />
+```
+
+### 클래스 다이어그램 (Class Diagram)
+
+객체 지향 설계를 문서화합니다.
+
+<MermaidDiagram chart={`
+classDiagram
+    class User {
+        +String id
+        +String name
+        +String email
+        +login()
+        +logout()
+    }
+    
+    class Post {
+        +String id
+        +String title
+        +String content
+        +Date createdAt
+        +publish()
+    }
+    
+    class Comment {
+        +String id
+        +String content
+        +Date createdAt
+    }
+    
+    User "1" --> "*" Post : creates
+    Post "1" --> "*" Comment : has
+    User "1" --> "*" Comment : writes
+`} />
+
+```
+<MermaidDiagram chart={`
+classDiagram
+    class User {
+        +String id
+        +String name
+        +String email
+        +login()
+        +logout()
+    }
+    
+    class Post {
+        +String id
+        +String title
+        +String content
+        +Date createdAt
+        +publish()
+    }
+    
+    class Comment {
+        +String id
+        +String content
+        +Date createdAt
+    }
+    
+    User "1" --> "*" Post : creates
+    Post "1" --> "*" Comment : has
+    User "1" --> "*" Comment : writes
+`} />
+```
+
+### 상태 다이어그램 (State Diagram)
+
+시스템의 상태 전이를 표현합니다.
+
+<MermaidDiagram chart={`
+stateDiagram-v2
+    [*] --> 대기중
+    대기중 --> 처리중 : 요청 시작
+    처리중 --> 성공 : 처리 완료
+    처리중 --> 실패 : 에러 발생
+    실패 --> 대기중 : 재시도
+    성공 --> [*]
+    실패 --> [*] : 최종 실패
+`} />
+
+```
+<MermaidDiagram chart={`
+stateDiagram-v2
+    [*] --> 대기중
+    대기중 --> 처리중 : 요청 시작
+    처리중 --> 성공 : 처리 완료
+    처리중 --> 실패 : 에러 발생
+    실패 --> 대기중 : 재시도
+    성공 --> [*]
+    실패 --> [*] : 최종 실패
+`} />
+```
+
+### ER 다이어그램 (Entity Relationship Diagram)
+
+데이터베이스 스키마를 설계합니다.
+
+<MermaidDiagram chart={`
+erDiagram
+    USER ||--o{ POST : writes
+    USER ||--o{ COMMENT : makes
+    POST ||--o{ COMMENT : has
+    POST }o--|| CATEGORY : belongs_to
+    
+    USER {
+        uuid id PK
+        string name
+        string email UK
+        datetime created_at
+    }
+    
+    POST {
+        uuid id PK
+        uuid user_id FK
+        uuid category_id FK
+        string title
+        text content
+        datetime published_at
+    }
+    
+    COMMENT {
+        uuid id PK
+        uuid post_id FK
+        uuid user_id FK
+        text content
+        datetime created_at
+    }
+    
+    CATEGORY {
+        uuid id PK
+        string name UK
+        string slug UK
+    }
+`} />
+
+```
+<MermaidDiagram chart={`
+erDiagram
+    USER ||--o{ POST : writes
+    USER ||--o{ COMMENT : makes
+    POST ||--o{ COMMENT : has
+    POST }o--|| CATEGORY : belongs_to
+    
+    USER {
+        uuid id PK
+        string name
+        string email UK
+        datetime created_at
+    }
+    
+    POST {
+        uuid id PK
+        uuid user_id FK
+        uuid category_id FK
+        string title
+        text content
+        datetime published_at
+    }
+    
+    COMMENT {
+        uuid id PK
+        uuid post_id FK
+        uuid user_id FK
+        text content
+        datetime created_at
+    }
+    
+    CATEGORY {
+        uuid id PK
+        string name UK
+        string slug UK
+    }
+`} />
+```
+
+### 간트 차트 (Gantt Chart)
+
+프로젝트 일정을 계획합니다.
+
+<MermaidDiagram chart={`
+gantt
+    title 프로젝트 일정
+    dateFormat YYYY-MM-DD
+    section 기획
+    요구사항 분석           :a1, 2024-01-01, 7d
+    설계                   :a2, after a1, 5d
+    section 개발
+    프론트엔드 개발         :b1, after a2, 14d
+    백엔드 개발            :b2, after a2, 14d
+    section 테스트
+    통합 테스트            :c1, after b1 b2, 5d
+    배포                   :c2, after c1, 2d
+`} />
+
+```
+<MermaidDiagram chart={`
+gantt
+    title 프로젝트 일정
+    dateFormat YYYY-MM-DD
+    section 기획
+    요구사항 분석           :a1, 2024-01-01, 7d
+    설계                   :a2, after a1, 5d
+    section 개발
+    프론트엔드 개발         :b1, after a2, 14d
+    백엔드 개발            :b2, after a2, 14d
+    section 테스트
+    통합 테스트            :c1, after b1 b2, 5d
+    배포                   :c2, after c1, 2d
+`} />
+```
+
+### 파이 차트 (Pie Chart)
+
+비율과 분포를 시각화합니다.
+
+<MermaidDiagram chart={`
+pie title 프로그래밍 언어 사용 비율
+    "TypeScript" : 45
+    "Python" : 25
+    "Go" : 15
+    "Rust" : 10
+    "기타" : 5
+`} />
+
+```
+<MermaidDiagram chart={`
+pie title 프로그래밍 언어 사용 비율
+    "TypeScript" : 45
+    "Python" : 25
+    "Go" : 15
+    "Rust" : 10
+    "기타" : 5
+`} />
+```
+
+## 사용 팁
+
+### 복잡한 다이어그램
+
+복잡한 다이어그램은 전체화면 모드에서 보는 것이 좋습니다. 우측 상단의 확대 버튼을 클릭하세요.
+
+### 다크 모드
+
+다이어그램은 다크 모드를 자동으로 지원합니다. 테마 설정에 따라 색상이 조정됩니다.
+
+### 성능
+
+- 매우 큰 다이어그램은 렌더링에 시간이 걸릴 수 있습니다
+- 가능하면 다이어그램을 논리적 단위로 분할하세요
+
+### 문법 참고
+
+Mermaid의 전체 문법은 [공식 문서](https://mermaid.js.org/)를 참고하세요.
+
+## 구현 세부사항
+
+이 템플릿의 Mermaid 구현은 다음을 포함합니다:
+
+- **자동 초기화**: 페이지 로드 시 자동으로 Mermaid 초기화
+- **HTML 엔티티 디코딩**: Nextra가 변환한 HTML 엔티티 자동 복원
+- **반응형 디자인**: 모바일 기기에서도 완벽하게 동작
+- **접근성**: 스크린 리더 지원 및 키보드 네비게이션
+
+구현 코드: `components/mermaid-diagram.tsx`
