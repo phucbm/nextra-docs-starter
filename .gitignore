@@ -3,4 +3,7 @@ node_modules
 /.idea
 
 # avoid committing generated index files
-_pagefind/
+_pagefind/.agent
+.claude
+.gemini
+.github/prompts
