@@ -1,5 +1,3 @@
-> 👋 Nov 2025: I’m actively working on this template. If you run into any problems, just create an issue and I’ll respond within a day.
-
 # Nextra Docs Starter 
 
 ![Vercel Deploy](https://deploy-badge.vercel.app/vercel/nextra-docs-starter)
