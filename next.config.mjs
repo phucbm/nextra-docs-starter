@@ -9,3 +9,5 @@ export default withNextra({
     // ... Other Next.js config options
     // output: 'export'
 });
+
+import('@opennextjs/cloudflare').then(m => m.initOpenNextCloudflareForDev());
